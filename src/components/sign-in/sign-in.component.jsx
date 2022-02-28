@@ -7,6 +7,8 @@ import FormInput from "../form-input/form-input.component";
 
 import {signInWithGoogle} from "../../firebase/firebase.utils";
 
+
+
 class SignIn extends React.Component {
     constructor(props) {
         super(props);

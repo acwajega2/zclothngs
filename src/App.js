@@ -9,7 +9,7 @@ import SignInAndSignUpPage from "./pages/homepage/sign-in-and-sign-up-page/sign-
 
 
 
-import {auth} from "./firebase/firebase.utils";
+import {auth,createUserProfileDocument} from "./firebase/firebase.utils";
 
 
 class App extends React.Component{
@@ -24,9 +24,34 @@ class App extends React.Component{
     unsubscribeFromAuth = null;
     componentDidMount() {
        this.unsubscribeFromAuth = auth.onAuthStateChanged(
-            user =>{
-                this.setState({currentUser: user});
-                console.log(user);
+           
+           //-------------When a user Signs in Successfully
+            async userAuth =>{
+                
+                if (userAuth){
+                    const userRef = await createUserProfileDocument(userAuth);
+                    
+                    userRef.onSnapshot(snapshot => {
+                        this.setState({
+                            currentUser:{
+                                id: snapshot.id,
+                                ...snapshot.data()
+                            }
+                        })
+                    })
+                }
+                else{
+                    //------------User has signed out
+                    this.setState({
+                        currentUser:userAuth
+                    })
+                }
+                
+                
+            //    createUserProfileDocument(user);
+                
+                
+                
             }
         )
     }
