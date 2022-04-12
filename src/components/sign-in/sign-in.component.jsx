@@ -30,6 +30,9 @@ class SignIn extends React.Component {
             this.setState({email:'',password:''})
         }
         catch (e) {
+            if (e.code === "auth/wrong-password" || e.code === "auth/user-not-found"){
+                alert("Invalid Username or Password")
+            }
             console.log(e);
         }
         

@@ -32,6 +32,7 @@ class App extends React.Component{
                     const userRef = await createUserProfileDocument(userAuth);
                     
                     userRef.onSnapshot(snapshot => {
+                        console.log(snapshot);
                         this.setState({
                             currentUser:{
                                 id: snapshot.id,
@@ -42,6 +43,7 @@ class App extends React.Component{
                 }
                 else{
                     //------------User has signed out
+                  //  console.log(userAuth)
                     this.setState({
                         currentUser:userAuth
                     })

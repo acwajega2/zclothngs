@@ -13,6 +13,7 @@ const firebaseConfig = {
     measurementId: "G-W6234ENLSB"
 };
 
+
 // Initialize Firebase
 
 firebase.initializeApp(firebaseConfig);
@@ -40,7 +41,6 @@ export const createUserProfileDocument = async (userAuth,data) =>{
     }
     
     return userRef;
-    
     //----> check if document exists
     
 }
